@@ -13,6 +13,13 @@ public class Ball : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D col) 
     {
-        //if (col.gameObject.name)
+        if (col.gameObject.name == "racket")
+        {
+            float x=hitFactor(transform.position, col.transform.position, col.collider.bounds.size.x);
+
+            Vector2 dir = new Vector2 (x, 1).normalized;
+
+            GetComponent<Rigidbody2D>().velocity = dir * speed;
+        }
     }
 }
